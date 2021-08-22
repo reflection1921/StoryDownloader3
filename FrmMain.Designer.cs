@@ -33,14 +33,14 @@ namespace StoryDownloader3
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelStatusMain = new ReaLTaiizor.Controls.FoxLabel();
             this.labelStatus = new ReaLTaiizor.Controls.FoxLabel();
-            this.hopeProgressBar1 = new ReaLTaiizor.Controls.HopeProgressBar();
-            this.foxButton2 = new ReaLTaiizor.Controls.FoxButton();
+            this.progresesStatusMain = new ReaLTaiizor.Controls.HopeProgressBar();
+            this.btnStart = new ReaLTaiizor.Controls.FoxButton();
             this.foxCheckBox7 = new ReaLTaiizor.Controls.FoxCheckBox();
             this.foxCheckBox6 = new ReaLTaiizor.Controls.FoxCheckBox();
             this.foxCheckBox5 = new ReaLTaiizor.Controls.FoxCheckBox();
-            this.foxCheckBox4 = new ReaLTaiizor.Controls.FoxCheckBox();
-            this.foxCheckBox3 = new ReaLTaiizor.Controls.FoxCheckBox();
-            this.foxCheckBox2 = new ReaLTaiizor.Controls.FoxCheckBox();
+            this.chkComments = new ReaLTaiizor.Controls.FoxCheckBox();
+            this.chkVideo = new ReaLTaiizor.Controls.FoxCheckBox();
+            this.chkPhoto = new ReaLTaiizor.Controls.FoxCheckBox();
             this.chkArticle = new ReaLTaiizor.Controls.FoxCheckBox();
             this.foxLabel7 = new ReaLTaiizor.Controls.FoxLabel();
             this.foxLabel6 = new ReaLTaiizor.Controls.FoxLabel();
@@ -54,6 +54,7 @@ namespace StoryDownloader3
             this.labelSavePath = new ReaLTaiizor.Controls.FoxBigLabel();
             this.labelSaveTitle = new ReaLTaiizor.Controls.FoxBigLabel();
             this.progressStatus = new ReaLTaiizor.Controls.HopeProgressBar();
+            this.labelNickname = new ReaLTaiizor.Controls.FoxLabel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,14 +74,14 @@ namespace StoryDownloader3
             // 
             this.panel1.Controls.Add(this.labelStatusMain);
             this.panel1.Controls.Add(this.labelStatus);
-            this.panel1.Controls.Add(this.hopeProgressBar1);
-            this.panel1.Controls.Add(this.foxButton2);
+            this.panel1.Controls.Add(this.progresesStatusMain);
+            this.panel1.Controls.Add(this.btnStart);
             this.panel1.Controls.Add(this.foxCheckBox7);
             this.panel1.Controls.Add(this.foxCheckBox6);
             this.panel1.Controls.Add(this.foxCheckBox5);
-            this.panel1.Controls.Add(this.foxCheckBox4);
-            this.panel1.Controls.Add(this.foxCheckBox3);
-            this.panel1.Controls.Add(this.foxCheckBox2);
+            this.panel1.Controls.Add(this.chkComments);
+            this.panel1.Controls.Add(this.chkVideo);
+            this.panel1.Controls.Add(this.chkPhoto);
             this.panel1.Controls.Add(this.chkArticle);
             this.panel1.Controls.Add(this.foxLabel7);
             this.panel1.Controls.Add(this.foxLabel6);
@@ -119,43 +120,43 @@ namespace StoryDownloader3
             this.labelStatus.TabIndex = 21;
             this.labelStatus.Text = "게시글 3000개 중 1개 다운로드";
             // 
-            // hopeProgressBar1
+            // progresesStatusMain
             // 
-            this.hopeProgressBar1.BarColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(223)))), ((int)(((byte)(230)))));
-            this.hopeProgressBar1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
-            this.hopeProgressBar1.DangerColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(108)))), ((int)(((byte)(108)))));
-            this.hopeProgressBar1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.hopeProgressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(246)))), ((int)(((byte)(252)))));
-            this.hopeProgressBar1.FullBallonColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(194)))), ((int)(((byte)(58)))));
-            this.hopeProgressBar1.FullBallonText = "Ok!";
-            this.hopeProgressBar1.FullBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(194)))), ((int)(((byte)(58)))));
-            this.hopeProgressBar1.IsError = false;
-            this.hopeProgressBar1.Location = new System.Drawing.Point(3, 66);
-            this.hopeProgressBar1.Name = "hopeProgressBar1";
-            this.hopeProgressBar1.ProgressBarStyle = ReaLTaiizor.Controls.HopeProgressBar.Style.ToolTip;
-            this.hopeProgressBar1.Size = new System.Drawing.Size(434, 32);
-            this.hopeProgressBar1.TabIndex = 20;
-            this.hopeProgressBar1.Text = "hopeProgressBar1";
-            this.hopeProgressBar1.ValueNumber = 0;
+            this.progresesStatusMain.BarColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(223)))), ((int)(((byte)(230)))));
+            this.progresesStatusMain.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(158)))), ((int)(((byte)(255)))));
+            this.progresesStatusMain.DangerColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(108)))), ((int)(((byte)(108)))));
+            this.progresesStatusMain.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.progresesStatusMain.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(246)))), ((int)(((byte)(252)))));
+            this.progresesStatusMain.FullBallonColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(194)))), ((int)(((byte)(58)))));
+            this.progresesStatusMain.FullBallonText = "Fin";
+            this.progresesStatusMain.FullBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(194)))), ((int)(((byte)(58)))));
+            this.progresesStatusMain.IsError = false;
+            this.progresesStatusMain.Location = new System.Drawing.Point(3, 66);
+            this.progresesStatusMain.Name = "progresesStatusMain";
+            this.progresesStatusMain.ProgressBarStyle = ReaLTaiizor.Controls.HopeProgressBar.Style.ToolTip;
+            this.progresesStatusMain.Size = new System.Drawing.Size(434, 32);
+            this.progresesStatusMain.TabIndex = 20;
+            this.progresesStatusMain.ValueNumber = 0;
             // 
-            // foxButton2
+            // btnStart
             // 
-            this.foxButton2.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
-            this.foxButton2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
-            this.foxButton2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foxButton2.DisabledBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
-            this.foxButton2.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(209)))), ((int)(((byte)(209)))));
-            this.foxButton2.DisabledTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(178)))), ((int)(((byte)(190)))));
-            this.foxButton2.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
-            this.foxButton2.EnabledCalc = true;
-            this.foxButton2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.foxButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(78)))), ((int)(((byte)(90)))));
-            this.foxButton2.Location = new System.Drawing.Point(19, 397);
-            this.foxButton2.Name = "foxButton2";
-            this.foxButton2.OverColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.foxButton2.Size = new System.Drawing.Size(403, 32);
-            this.foxButton2.TabIndex = 19;
-            this.foxButton2.Text = "백업";
+            this.btnStart.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btnStart.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(193)))), ((int)(((byte)(193)))), ((int)(((byte)(193)))));
+            this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStart.DisabledBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.btnStart.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(209)))), ((int)(((byte)(209)))));
+            this.btnStart.DisabledTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(178)))), ((int)(((byte)(190)))));
+            this.btnStart.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(232)))), ((int)(((byte)(232)))));
+            this.btnStart.EnabledCalc = true;
+            this.btnStart.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(78)))), ((int)(((byte)(90)))));
+            this.btnStart.Location = new System.Drawing.Point(19, 397);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.OverColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.btnStart.Size = new System.Drawing.Size(403, 32);
+            this.btnStart.TabIndex = 19;
+            this.btnStart.Text = "백업";
+            this.btnStart.Click += new ReaLTaiizor.Util.FoxBase.ButtonFoxBase.ClickEventHandler(this.btnStart_Click);
             // 
             // foxCheckBox7
             // 
@@ -226,74 +227,72 @@ namespace StoryDownloader3
             this.foxCheckBox5.UncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
             this.foxCheckBox5.UncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(149)))), ((int)(((byte)(0)))));
             // 
-            // foxCheckBox4
+            // chkComments
             // 
-            this.foxCheckBox4.Checked = true;
-            this.foxCheckBox4.CheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.foxCheckBox4.CheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(138)))), ((int)(((byte)(193)))));
-            this.foxCheckBox4.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(218)))));
-            this.foxCheckBox4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foxCheckBox4.DisabledCheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.foxCheckBox4.DisabledCheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(166)))), ((int)(((byte)(191)))));
-            this.foxCheckBox4.DisabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(183)))), ((int)(((byte)(216)))));
-            this.foxCheckBox4.DisabledUncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.foxCheckBox4.DisabledUncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(189)))), ((int)(((byte)(133)))));
-            this.foxCheckBox4.DisabledUncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(203)))), ((int)(((byte)(124)))));
-            this.foxCheckBox4.EnabledCalc = true;
-            this.foxCheckBox4.Location = new System.Drawing.Point(352, 286);
-            this.foxCheckBox4.Name = "foxCheckBox4";
-            this.foxCheckBox4.Size = new System.Drawing.Size(55, 28);
-            this.foxCheckBox4.TabIndex = 15;
-            this.foxCheckBox4.Text = "foxCheckBox4";
-            this.foxCheckBox4.UncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.foxCheckBox4.UncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
-            this.foxCheckBox4.UncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(149)))), ((int)(((byte)(0)))));
+            this.chkComments.Checked = true;
+            this.chkComments.CheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.chkComments.CheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(138)))), ((int)(((byte)(193)))));
+            this.chkComments.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(218)))));
+            this.chkComments.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkComments.DisabledCheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.chkComments.DisabledCheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(166)))), ((int)(((byte)(191)))));
+            this.chkComments.DisabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(183)))), ((int)(((byte)(216)))));
+            this.chkComments.DisabledUncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.chkComments.DisabledUncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(189)))), ((int)(((byte)(133)))));
+            this.chkComments.DisabledUncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(203)))), ((int)(((byte)(124)))));
+            this.chkComments.EnabledCalc = true;
+            this.chkComments.Location = new System.Drawing.Point(352, 286);
+            this.chkComments.Name = "chkComments";
+            this.chkComments.Size = new System.Drawing.Size(55, 28);
+            this.chkComments.TabIndex = 15;
+            this.chkComments.Text = "foxCheckBox4";
+            this.chkComments.UncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.chkComments.UncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
+            this.chkComments.UncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(149)))), ((int)(((byte)(0)))));
             // 
-            // foxCheckBox3
+            // chkVideo
             // 
-            this.foxCheckBox3.Checked = true;
-            this.foxCheckBox3.CheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.foxCheckBox3.CheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(138)))), ((int)(((byte)(193)))));
-            this.foxCheckBox3.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(218)))));
-            this.foxCheckBox3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foxCheckBox3.DisabledCheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.foxCheckBox3.DisabledCheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(166)))), ((int)(((byte)(191)))));
-            this.foxCheckBox3.DisabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(183)))), ((int)(((byte)(216)))));
-            this.foxCheckBox3.DisabledUncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.foxCheckBox3.DisabledUncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(189)))), ((int)(((byte)(133)))));
-            this.foxCheckBox3.DisabledUncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(203)))), ((int)(((byte)(124)))));
-            this.foxCheckBox3.EnabledCalc = true;
-            this.foxCheckBox3.Location = new System.Drawing.Point(132, 286);
-            this.foxCheckBox3.Name = "foxCheckBox3";
-            this.foxCheckBox3.Size = new System.Drawing.Size(55, 28);
-            this.foxCheckBox3.TabIndex = 14;
-            this.foxCheckBox3.Text = "foxCheckBox3";
-            this.foxCheckBox3.UncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.foxCheckBox3.UncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
-            this.foxCheckBox3.UncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(149)))), ((int)(((byte)(0)))));
+            this.chkVideo.Checked = true;
+            this.chkVideo.CheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.chkVideo.CheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(138)))), ((int)(((byte)(193)))));
+            this.chkVideo.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(218)))));
+            this.chkVideo.Cursor = System.Windows.Forms.Cursors.Default;
+            this.chkVideo.DisabledCheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.chkVideo.DisabledCheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(166)))), ((int)(((byte)(191)))));
+            this.chkVideo.DisabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(183)))), ((int)(((byte)(216)))));
+            this.chkVideo.DisabledUncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.chkVideo.DisabledUncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(189)))), ((int)(((byte)(133)))));
+            this.chkVideo.DisabledUncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(203)))), ((int)(((byte)(124)))));
+            this.chkVideo.EnabledCalc = false;
+            this.chkVideo.Location = new System.Drawing.Point(132, 286);
+            this.chkVideo.Name = "chkVideo";
+            this.chkVideo.Size = new System.Drawing.Size(55, 28);
+            this.chkVideo.TabIndex = 14;
+            this.chkVideo.UncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.chkVideo.UncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
+            this.chkVideo.UncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(149)))), ((int)(((byte)(0)))));
             // 
-            // foxCheckBox2
+            // chkPhoto
             // 
-            this.foxCheckBox2.Checked = true;
-            this.foxCheckBox2.CheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.foxCheckBox2.CheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(138)))), ((int)(((byte)(193)))));
-            this.foxCheckBox2.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(218)))));
-            this.foxCheckBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.foxCheckBox2.DisabledCheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.foxCheckBox2.DisabledCheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(166)))), ((int)(((byte)(191)))));
-            this.foxCheckBox2.DisabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(183)))), ((int)(((byte)(216)))));
-            this.foxCheckBox2.DisabledUncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.foxCheckBox2.DisabledUncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(189)))), ((int)(((byte)(133)))));
-            this.foxCheckBox2.DisabledUncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(203)))), ((int)(((byte)(124)))));
-            this.foxCheckBox2.EnabledCalc = true;
-            this.foxCheckBox2.Location = new System.Drawing.Point(352, 252);
-            this.foxCheckBox2.Name = "foxCheckBox2";
-            this.foxCheckBox2.Size = new System.Drawing.Size(55, 28);
-            this.foxCheckBox2.TabIndex = 13;
-            this.foxCheckBox2.Text = "foxCheckBox2";
-            this.foxCheckBox2.UncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.foxCheckBox2.UncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
-            this.foxCheckBox2.UncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(149)))), ((int)(((byte)(0)))));
+            this.chkPhoto.Checked = true;
+            this.chkPhoto.CheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.chkPhoto.CheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(138)))), ((int)(((byte)(193)))));
+            this.chkPhoto.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(156)))), ((int)(((byte)(218)))));
+            this.chkPhoto.Cursor = System.Windows.Forms.Cursors.Default;
+            this.chkPhoto.DisabledCheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.chkPhoto.DisabledCheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(124)))), ((int)(((byte)(166)))), ((int)(((byte)(191)))));
+            this.chkPhoto.DisabledCheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(183)))), ((int)(((byte)(216)))));
+            this.chkPhoto.DisabledUncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.chkPhoto.DisabledUncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(189)))), ((int)(((byte)(133)))));
+            this.chkPhoto.DisabledUncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(203)))), ((int)(((byte)(124)))));
+            this.chkPhoto.EnabledCalc = false;
+            this.chkPhoto.Location = new System.Drawing.Point(352, 252);
+            this.chkPhoto.Name = "chkPhoto";
+            this.chkPhoto.Size = new System.Drawing.Size(55, 28);
+            this.chkPhoto.TabIndex = 13;
+            this.chkPhoto.UncheckedBorderColorA = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.chkPhoto.UncheckedBorderColorB = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(132)))), ((int)(((byte)(0)))));
+            this.chkPhoto.UncheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(149)))), ((int)(((byte)(0)))));
             // 
             // chkArticle
             // 
@@ -452,7 +451,7 @@ namespace StoryDownloader3
             this.progressStatus.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.progressStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(246)))), ((int)(((byte)(252)))));
             this.progressStatus.FullBallonColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(194)))), ((int)(((byte)(58)))));
-            this.progressStatus.FullBallonText = "Ok!";
+            this.progressStatus.FullBallonText = "Fin";
             this.progressStatus.FullBarColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(194)))), ((int)(((byte)(58)))));
             this.progressStatus.IsError = false;
             this.progressStatus.Location = new System.Drawing.Point(3, 3);
@@ -460,8 +459,17 @@ namespace StoryDownloader3
             this.progressStatus.ProgressBarStyle = ReaLTaiizor.Controls.HopeProgressBar.Style.ToolTip;
             this.progressStatus.Size = new System.Drawing.Size(434, 32);
             this.progressStatus.TabIndex = 0;
-            this.progressStatus.Text = "hopeProgressBar1";
             this.progressStatus.ValueNumber = 0;
+            // 
+            // labelNickname
+            // 
+            this.labelNickname.Font = new System.Drawing.Font("맑은 고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelNickname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(88)))), ((int)(((byte)(100)))));
+            this.labelNickname.Location = new System.Drawing.Point(327, 35);
+            this.labelNickname.Name = "labelNickname";
+            this.labelNickname.Size = new System.Drawing.Size(122, 19);
+            this.labelNickname.TabIndex = 7;
+            this.labelNickname.Text = "로드중...";
             // 
             // FrmMain
             // 
@@ -469,13 +477,15 @@ namespace StoryDownloader3
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(464, 516);
+            this.Controls.Add(this.labelNickname);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";
-            this.Text = "Story Downloader 3";
+            this.Text = "`";
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -492,14 +502,14 @@ namespace StoryDownloader3
         private ReaLTaiizor.Controls.FoxBigLabel labelSavePath;
         private ReaLTaiizor.Controls.FoxLabel labelStatusMain;
         private ReaLTaiizor.Controls.FoxLabel labelStatus;
-        private ReaLTaiizor.Controls.HopeProgressBar hopeProgressBar1;
-        private ReaLTaiizor.Controls.FoxButton foxButton2;
+        private ReaLTaiizor.Controls.HopeProgressBar progresesStatusMain;
+        private ReaLTaiizor.Controls.FoxButton btnStart;
         private ReaLTaiizor.Controls.FoxCheckBox foxCheckBox7;
         private ReaLTaiizor.Controls.FoxCheckBox foxCheckBox6;
         private ReaLTaiizor.Controls.FoxCheckBox foxCheckBox5;
-        private ReaLTaiizor.Controls.FoxCheckBox foxCheckBox4;
-        private ReaLTaiizor.Controls.FoxCheckBox foxCheckBox3;
-        private ReaLTaiizor.Controls.FoxCheckBox foxCheckBox2;
+        private ReaLTaiizor.Controls.FoxCheckBox chkComments;
+        private ReaLTaiizor.Controls.FoxCheckBox chkVideo;
+        private ReaLTaiizor.Controls.FoxCheckBox chkPhoto;
         private ReaLTaiizor.Controls.FoxCheckBox chkArticle;
         private ReaLTaiizor.Controls.FoxLabel foxLabel7;
         private ReaLTaiizor.Controls.FoxLabel foxLabel6;
@@ -508,5 +518,6 @@ namespace StoryDownloader3
         private ReaLTaiizor.Controls.FoxLabel foxLabel3;
         private ReaLTaiizor.Controls.FoxLabel foxLabel2;
         private ReaLTaiizor.Controls.FoxLabel foxLabel1;
+        private ReaLTaiizor.Controls.FoxLabel labelNickname;
     }
 }
