@@ -27,7 +27,95 @@ namespace StoryDownloader3
 
         private async Task DoBackup()
         {
+            string commentBackup = "";
+            if (chkComments.Checked)
+            {
+                commentBackup = ", 댓글";
+            }
+
+            SetText(labelStatusMain, $"게시글(게시글, 사진, 동영상{commentBackup}) 백업 중...");
             await BackupArticles();
+
+            progressStatusMain.ValueNumber = 25;
+            progressStatusMain.Invalidate();
+
+            SetText(labelStatusMain, "친구목록 백업 중...");
+            await BackupFriends();
+
+            progressStatusMain.ValueNumber = 50;
+            progressStatusMain.Invalidate();
+
+            SetText(labelStatusMain, "친구신청 목록 백업 중...");
+            await BackupInvitations();
+
+            progressStatusMain.ValueNumber = 75;
+            progressStatusMain.Invalidate();
+
+            SetText(labelStatusMain, "쪽지 백업 중...");
+            //쪽지 백업 ++
+
+            progressStatusMain.ValueNumber = 100;
+            progressStatusMain.Invalidate();
+        }
+
+        private async Task BackupInvitations()
+        {
+
+            if (!chkInvitations.Checked) { return; }
+
+            JArray inviteArr = await kapi.GetInvitations();
+            StreamWriter swSent = new StreamWriter($"{labelSavePath.Text}\\보낸 친구신청목록.txt", true);
+            StreamWriter swRecv = new StreamWriter($"{labelSavePath.Text}\\받은 친구신청목록.txt", true);
+
+            for (int i = 0; i < inviteArr.Count; i++)
+            {
+                string nickname = inviteArr[i]["display_name"].ToString();
+                string userid = inviteArr[i]["user_id"].ToString();
+                string type = inviteArr[i]["type"].ToString();
+
+                if (type.Equals("sent"))
+                {
+                    await swSent.WriteLineAsync($"{nickname} : {userid}");
+                } else
+                {
+                    await swRecv.WriteLineAsync($"{nickname} : {userid}");
+                }
+
+            }
+
+            swSent.Close();
+            swRecv.Close();
+        }
+
+        private async Task BackupFriends()
+        {
+            if (!chkFriends.Checked) { return; }
+
+            JArray friendsArr = await kapi.GetFriends();
+            int friendCount = friendsArr.Count;
+            progressStatus.ValueNumber = 0;
+            progressStatus.Invalidate();
+            SetText(labelStatus, "친구목록 백업 중...");
+
+
+            using (StreamWriter sw = new StreamWriter($"{labelSavePath.Text}\\친구목록.txt", true))
+            {
+                for (int i = 0; i < friendCount; i++)
+                {
+                    string nickname = friendsArr[i]["display_name"].ToString();
+                    string userid = friendsArr[i]["id"].ToString();
+                    string channelPrefix = "";
+                    if (userid.StartsWith("@"))
+                    {
+                        channelPrefix = "[#채널]";
+                    }
+                    await sw.WriteLineAsync($"{channelPrefix}{nickname} : {userid}");
+
+                }
+
+                progressStatus.ValueNumber = 100;
+                progressStatus.Invalidate();
+            }
         }
 
         private async Task BackupComments(string articleID, string createdTime, string saveDirectory)
@@ -144,6 +232,9 @@ namespace StoryDownloader3
                 since = jArr[jArr.Count - 1]["id"].ToString();
                 
             }
+
+            progressStatus.ValueNumber = 100;
+            progressStatus.Invalidate();
         }
 
         private void btnSelectPath_Click(object sender, EventArgs e)
@@ -182,15 +273,21 @@ namespace StoryDownloader3
             SetText(labelNickname, kapi.nickname + "님");  
         }
 
-        private void SetText(Control label, string str)
+        private void SetText(Control control, string str)
         {
-            label.Text = str;
-            label.Invalidate();
+            control.Text = str;
+            control.Invalidate();
         }
 
         private async void btnStart_Click(object sender, EventArgs e)
         {
+            if (labelSavePath.Text.Equals("경로를 설정하세요."))
+            {
+                MessageBox.Show("경로를 먼저 설정하세요.", "Story Downloader 3", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             await DoBackup();
+            //await BackupFriends();
         }
     }
 }

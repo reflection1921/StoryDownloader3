@@ -89,8 +89,13 @@ namespace StoryDownloader3
         {
             using (WebClient client = new WebClient())
             {
-                client.Headers.Add("Referer", $"https://story.kakao.com/{loginID}");
-                await client.DownloadFileTaskAsync(new Uri(url), savePath);
+                try
+                {
+                    client.Headers.Add("Referer", $"https://story.kakao.com/{loginID}");
+                    await client.DownloadFileTaskAsync(new Uri(url), savePath);
+                }
+                catch (IOException ex) { return; }
+                catch (Exception ex) { return; }
             }
         }
 
@@ -121,6 +126,17 @@ namespace StoryDownloader3
         {
             JObject jObj = JObject.Parse(await GetStoryReq("https://story.kakao.com/a/settings/profile"));
             return (int)jObj["activity_count"];
+        }
+
+        public async Task<JArray> GetFriends()
+        {
+            JObject jObj = JObject.Parse(await GetStoryReq($"https://story.kakao.com/a/friends"));
+            return (JArray)jObj["profiles"];
+        }
+
+        public async Task<JArray> GetInvitations()
+        {
+            return JArray.Parse(await GetStoryReq("https://story.kakao.com/a/invitations"));
         }
     }
 }
