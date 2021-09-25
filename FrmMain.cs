@@ -17,7 +17,6 @@ namespace StoryDownloader3
     {
 
         KakaoAPI kapi;
-        private bool isRun;
 
         public FrmMain()
         {
@@ -52,10 +51,71 @@ namespace StoryDownloader3
             progressStatusMain.Invalidate();
 
             SetText(labelStatusMain, "쪽지 백업 중...");
-            //쪽지 백업 ++
+            await BackupMessages();
 
             progressStatusMain.ValueNumber = 100;
             progressStatusMain.Invalidate();
+        }
+
+        private async Task BackupMessages()
+        {
+            if (!chkMessages.Checked) { return; }
+
+            string since = "";
+
+            if (!Directory.Exists($"{labelSavePath.Text}\\Messages"))
+            {
+                Directory.CreateDirectory($"{labelSavePath.Text}\\Messages");
+            }
+
+            while (true)
+            {
+                JArray messageArr = await kapi.GetMessages(since);
+
+                if (messageArr.Count > 0)
+                {
+                    since = messageArr[messageArr.Count - 1]["id"].ToString();
+                } else
+                {
+                    break;
+                }
+
+                for (int i = 0; i < messageArr.Count; i++)
+                {
+                    DateTime createdDateTime = TimeZoneInfo.ConvertTimeFromUtc((DateTime)messageArr[i]["created_at"], TimeZoneInfo.Local);
+                    string messageTime = createdDateTime.ToString("yyyy.MM.dd HH:mm:ss");
+                    string saveFileName = "";
+                    bool isSend = (messageArr[i]["type"].ToString() == "send") ? true : false;
+                    string summary = messageArr[i]["summary"].ToString();
+                    string content = "";
+
+                    if (isSend)
+                    {
+                        string recvUser = messageArr[i]["receivers"][0]["display_name"].ToString();
+                        string receiverID = messageArr[i]["receivers"][0]["id"].ToString();
+                        saveFileName = $"{ReplaceNotAllowedChars(recvUser)}_{receiverID}";
+                        content = $"[보낸 쪽지]\r\n수신자: {messageTime}\r\n발신일: {messageTime}\r\n{summary}\r\n";
+                    } else
+                    {
+                        string sendUser = messageArr[i]["sender"]["display_name"].ToString();
+                        string senderID = messageArr[i]["sender"]["id"].ToString();
+                        saveFileName = $"{ReplaceNotAllowedChars(sendUser)}_{senderID}";
+                        content = $"[받은 쪽지]\r\n발신자: {sendUser}\r\n수신일: {messageTime}\r\n{summary}\r\n";
+                    }
+
+                    using (StreamWriter sw = new StreamWriter($"{labelSavePath.Text}\\Messages\\{saveFileName}.txt", true))
+                    {
+                        await sw.WriteLineAsync(content);
+                    }
+                }
+
+            }
+            
+        }
+
+        private string ReplaceNotAllowedChars(string str)
+        {
+            return str.Replace("\\", "").Replace("/", "").Replace(":", "").Replace("*", "").Replace("?", "").Replace("\"", "").Replace("<", "").Replace(">", "").Replace("|", "");
         }
 
         private async Task BackupInvitations()
@@ -141,6 +201,12 @@ namespace StoryDownloader3
                         string commentAuthor = commentsArray[i]["writer"]["display_name"].ToString();
                         string commentID = commentsArray[i]["id"].ToString();
                         JArray contentsArray = (JArray)commentsArray[i]["decorators"];
+
+                        if (contentsArray == null)
+                        {
+                            continue;
+                        }
+
                         for (int j = 0; j < contentsArray.Count; j++)
                         {
                             string contentType = contentsArray[j]["type"].ToString();

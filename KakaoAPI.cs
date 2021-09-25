@@ -138,5 +138,10 @@ namespace StoryDownloader3
         {
             return JArray.Parse(await GetStoryReq("https://story.kakao.com/a/invitations"));
         }
+
+        public async Task<JArray> GetMessages(string since)
+        {
+            return JArray.Parse(await GetStoryReq($"https://story.kakao.com/a/messages?since={since}"));
+        }
     }
 }
