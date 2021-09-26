@@ -29,6 +29,7 @@ namespace StoryDownloader3
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.labelTitle = new ReaLTaiizor.Controls.FoxBigLabel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelStatusMain = new ReaLTaiizor.Controls.FoxLabel();
@@ -480,10 +481,12 @@ namespace StoryDownloader3
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.labelTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMain";
             this.Text = "Story Downloader 3";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

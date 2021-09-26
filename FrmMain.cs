@@ -18,10 +18,10 @@ namespace StoryDownloader3
 
         KakaoAPI kapi;
 
-        public FrmMain()
+        public FrmMain(string cookie)
         {
             InitializeComponent();            
-            kapi = new KakaoAPI(File.ReadAllText("test.txt"));
+            kapi = new KakaoAPI(cookie);
         }
 
         private async Task DoBackup()
@@ -55,6 +55,8 @@ namespace StoryDownloader3
 
             progressStatusMain.ValueNumber = 100;
             progressStatusMain.Invalidate();
+
+            SetText(labelStatusMain, "완료!");
         }
 
         private async Task BackupMessages()
@@ -352,8 +354,17 @@ namespace StoryDownloader3
                 MessageBox.Show("경로를 먼저 설정하세요.", "Story Downloader 3", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            btnStart.Enabled = false;
+            btnStart.Invalidate();
+
             await DoBackup();
             //await BackupFriends();
+        }
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -9,6 +9,7 @@ Story Downloader 3는 카카오스토리에 업로드한 게시글, 사진, 동영상 등을 백업할 수
 ## 사용한 라이브러리
 - [ReaLTaiizor](https://github.com/Taiizor/ReaLTaiizor) : UI / UX 라이브러리
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) : JSON 라이브러리
+- [WebView2](https://aka.ms/webview) : MS Edge WebView2 라이브러리
 
 ## 백업 대상
 - 게시글
