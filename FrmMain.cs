@@ -338,7 +338,7 @@ namespace StoryDownloader3
         private async void FrmMain_Load(object sender, EventArgs e)
         {
             await kapi.LoadInformation();
-            SetText(labelNickname, kapi.nickname + "님");  
+            SetText(labelNickname, kapi.Nickname + "님");  
         }
 
         private void SetText(Control control, string str)
