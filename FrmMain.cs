@@ -194,9 +194,13 @@ namespace StoryDownloader3
                     {
                         DateTime createdDateTime = TimeZoneInfo.ConvertTimeFromUtc((DateTime)commentsArray[i]["created_at"], TimeZoneInfo.Local);
                         string commentTime = createdDateTime.ToString("yyyy.MM.dd HH:mm:ss");
-                        string commentAuthor = commentsArray[i]["writer"]["display_name"].ToString();
-                        string commentID = commentsArray[i]["id"].ToString();
-                        JsonArray contentsArray = commentsArray[i]["decorators"].AsArray();
+                        JsonObject comment = commentsArray[i].AsObject();
+                        // Comments before year 2013 doesn't have "decorators" field
+                        // TODO: USe "text" field and save comments
+                        if (!comment.ContainsKey("decorators")) continue;
+                        string commentAuthor = comment["writer"]["display_name"].ToString();
+                        string commentID = comment["id"].ToString();
+                        JsonArray contentsArray = comment["decorators"].AsArray();
 
                         if (contentsArray == null)
                         {
