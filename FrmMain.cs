@@ -1,15 +1,9 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+﻿using System;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Threading;
 using System.Windows.Forms;
+using System.Text.Json.Nodes;
 
 namespace StoryDownloader3
 {
@@ -72,7 +66,7 @@ namespace StoryDownloader3
 
             while (true)
             {
-                JArray messageArr = await kapi.GetMessages(since);
+                JsonArray messageArr = await kapi.GetMessages(since);
 
                 if (messageArr.Count > 0)
                 {
@@ -125,7 +119,7 @@ namespace StoryDownloader3
 
             if (!chkInvitations.Checked) { return; }
 
-            JArray inviteArr = await kapi.GetInvitations();
+            JsonArray inviteArr = await kapi.GetInvitations();
             StreamWriter swSent = new StreamWriter($"{labelSavePath.Text}\\보낸 친구신청목록.txt", true);
             StreamWriter swRecv = new StreamWriter($"{labelSavePath.Text}\\받은 친구신청목록.txt", true);
 
@@ -153,7 +147,7 @@ namespace StoryDownloader3
         {
             if (!chkFriends.Checked) { return; }
 
-            JArray friendsArr = await kapi.GetFriends();
+            JsonArray friendsArr = await kapi.GetFriends();
             int friendCount = friendsArr.Count;
             progressStatus.ValueNumber = 0;
             progressStatus.Invalidate();
@@ -186,7 +180,7 @@ namespace StoryDownloader3
 
             while (true)
             {
-                JArray commentsArray = await kapi.GetComments(articleID, since);
+                JsonArray commentsArray = await kapi.GetComments(articleID, since);
 
                 if (commentsArray.Count == 0)
                 {
@@ -200,9 +194,13 @@ namespace StoryDownloader3
                     {
                         DateTime createdDateTime = TimeZoneInfo.ConvertTimeFromUtc((DateTime)commentsArray[i]["created_at"], TimeZoneInfo.Local);
                         string commentTime = createdDateTime.ToString("yyyy.MM.dd HH:mm:ss");
-                        string commentAuthor = commentsArray[i]["writer"]["display_name"].ToString();
-                        string commentID = commentsArray[i]["id"].ToString();
-                        JArray contentsArray = (JArray)commentsArray[i]["decorators"];
+                        JsonObject comment = commentsArray[i].AsObject();
+                        // Comments before year 2013 doesn't have "decorators" field
+                        // TODO: USe "text" field and save comments
+                        if (!comment.ContainsKey("decorators")) continue;
+                        string commentAuthor = comment["writer"]["display_name"].ToString();
+                        string commentID = comment["id"].ToString();
+                        JsonArray contentsArray = comment["decorators"].AsArray();
 
                         if (contentsArray == null)
                         {
@@ -244,7 +242,7 @@ namespace StoryDownloader3
             string since = "";
             while (true)
             {
-                JArray jArr = await kapi.GetArticles(since);
+                JsonArray jArr = await kapi.GetArticles(since);
                 if (jArr.Count == 0)
                 {
                     break;
@@ -268,7 +266,7 @@ namespace StoryDownloader3
 
                     if (jArr[i]["media"] != null)
                     {
-                        JArray mediaArr = (JArray)jArr[i]["media"];
+                        JsonArray mediaArr = jArr[i]["media"].AsArray();
                         for (int j = 0; j < mediaArr.Count; j++)
                         {
                             string extension = GetExtension(mediaArr[j]["content_type"].ToString());
@@ -338,7 +336,7 @@ namespace StoryDownloader3
         private async void FrmMain_Load(object sender, EventArgs e)
         {
             await kapi.LoadInformation();
-            SetText(labelNickname, kapi.nickname + "님");  
+            SetText(labelNickname, kapi.Nickname + "님");  
         }
 
         private void SetText(Control control, string str)
